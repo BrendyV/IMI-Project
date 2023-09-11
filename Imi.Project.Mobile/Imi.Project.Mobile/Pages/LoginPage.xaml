@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:Imi.Project.Mobile.ViewModels" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" x:DataType="viewmodels:LoginViewModel"
+             x:Class="Imi.Project.Mobile.Pages.LoginPage"
+             BackgroundImageSource="backgroundMain.png">
+    <ContentPage.Content>
+        <Grid>
+            <Grid RowDefinitions="Auto, Auto"  Margin="30" RowSpacing="40" VerticalOptions="Center">
+                <StackLayout>
+                    <Label HorizontalOptions="CenterAndExpand" Text="Aanmelden" TextColor="White" FontSize="50" FontAttributes="Bold">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android">JackSimba-PersonalUse.otf#Jack Simba - Personal Use</On>
+                                <On Platform="UWP">/Assets/Fonts/JackSimba-PersonalUse.otf#Jack Simba - Personal Use</On>
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
+
+                </StackLayout>
+                <StackLayout Grid.Row="1">
+
+                    <Label Text="Email" HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="22" FontAttributes="Bold">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android">JackSimba-PersonalUse.otf#Jack Simba - Personal Use</On>
+                                <On Platform="UWP">/Assets/Fonts/JackSimba-PersonalUse.otf#Jack Simba - Personal Use</On>
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
+                    <Entry HorizontalTextAlignment="Center" x:Name="txtUsername" Text="{Binding Email}" TextColor="White" Placeholder="Email" PlaceholderColor="White" FontSize="20"/>
+                    <Label Text="Paswoord"  HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="22" FontAttributes="Bold">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android">JackSimba-PersonalUse.otf#Jack Simba - Personal Use</On>
+                                <On Platform="UWP">/Assets/Fonts/JackSimba-PersonalUse.otf#Jack Simba - Personal Use</On>
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
+                    <Entry HorizontalTextAlignment="Center" x:Name="txtPass" Text="{Binding Password}" TextColor="White" IsPassword="True" Placeholder="Paswoord" PlaceholderColor="White" FontSize="20"/>
+                    <buttons:SfButton
+                        VerticalOptions="Center"
+                        Text="Aanmelden"
+                        TextColor="Black"
+                        BackgroundColor="#E0F7FC"
+                        BorderWidth="1.5"
+                        CornerRadius="50"
+                        Command="{Binding LoginCommand}"/>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage> 

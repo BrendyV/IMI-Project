@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div id="app">
+    </div>
+</div>
+
+<div class="col">
+    <img src="../images/Betta.jpg" alt="Betta Splendens" height="500" width="500" style="text-align: center; display: block;">
+</div>
+
+@section scripts{
+    <script src="~/lib/vue/vue.js"></script>
+    <script src="~/lib/axios/axios.min.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                counter: 1,
+            },
+
+        });
+    </script>
+}

@@ -1,0 +1,97 @@
+﻿@page "/animal"
+@using Imi.Project.Blazor.Services.Animal.Api
+@inject ICRUDService<AnimalListItem, AnimalItem> service;
+
+<h2>Animal</h2>
+
+
+<div class="mt-3">
+    @if (!string.IsNullOrEmpty(error))
+    {
+        <div class="alert alert-danger">
+            @error
+        </div>
+    }
+
+    @if (currentAnimal == null)
+    {
+        <AnimalList AnimalListItems="animalListItems"
+                    OnAddClick="AddAnimal"
+                    OnEditClick="EditAnimal"
+                    OnDeleteClick="DeleteAnimal">
+        </AnimalList>
+    }
+    else
+    {
+        <AnimalDetail Animal="currentAnimal"
+                  OnSaveClick="SaveAnimal"
+                  OnCancelClick="ShowAnimals">
+        </AnimalDetail>
+    }
+</div>
+
+@code {
+    private AnimalListItem[] animalListItems = new AnimalListItem[0];
+    private AnimalItem currentAnimal;
+    private string error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ShowAnimals();
+    }
+
+    public async Task ShowAnimals()
+    {
+        animalListItems = await service.GetList();
+        this.currentAnimal = null;
+
+    }
+
+    public async Task ReadAnimal(AnimalListItem item)
+    {
+        this.currentAnimal = await service.Get(item.Id);
+    }
+
+    public async Task SaveAnimal(AnimalItem item)
+    {
+        try
+        {
+            if (currentAnimal.Id == 0)
+            {
+                await service.Create(currentAnimal);
+            }
+            else
+            {
+                await service.Update(currentAnimal);
+            }
+            await this.ShowAnimals();
+        }
+        catch (Exception ex)
+        {
+            this.error = ex.Message;
+        }
+    }
+
+    public async Task AddAnimal()
+    {
+        this.currentAnimal = await service.GetNew();
+    }
+
+    public async Task EditAnimal(AnimalListItem item)
+    {
+        this.currentAnimal = await service.Get(item.Id);
+    }
+
+    public async Task DeleteAnimal(AnimalListItem item)
+    {
+        try
+        {
+            await service.Delete(item.Id);
+            await this.ShowAnimals();
+        }
+        catch (Exception ex)
+        {
+            this.error = ex.Message;
+        }
+    }
+}

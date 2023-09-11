@@ -1,0 +1,23 @@
+﻿<div id="app">
+    <h2>{{pageTitle}}</h2>
+    <div v-if="kindDeleted" class="alert alert-primary alert-dismissible fade show" role="alert">
+        Kind deleted
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    <a class="nav-link text-success" asp-area="" asp-controller="Kinds" asp-action="CreateKind"> Nieuw dier </a>
+    <div class="row">
+        <div v-for="kind in kinds" class="card col-md-3 m-2 p-4" style="width: 18rem;">
+            <img v-bind:src="kind.image" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h4 class="card-title">{{kind.name}}</h4>
+                <a v-on:click="deletedKind" v-bind:id="kind.id" class="btn btn-primary">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/kinds/kinds.js"></script>

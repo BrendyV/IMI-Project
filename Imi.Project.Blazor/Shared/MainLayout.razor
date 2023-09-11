@@ -1,0 +1,25 @@
+﻿@inherits LayoutComponentBase
+
+<MainMenu MenuItems="MenuItems" />
+<div class="container mt-3">
+    @Body
+</div>
+
+@code {
+    public MenuItem[] MenuItems { get; set; }
+
+    protected override void OnInitialized()
+    {
+        this.LoadMenuItems();
+    }
+
+    private void LoadMenuItems()
+    {
+        this.MenuItems = new MenuItem[]
+            {
+            new MenuItem() { Caption = "Animals", Href = "animal"},
+            new MenuItem() { Caption = "Concepts", Href = "concept"},
+            
+            };
+    }
+}

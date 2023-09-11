@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Videos";
+}
+
+<div class="text-center">
+    <h1>Kijk naar een video</h1>
+</div>
+
+<div id="app">
+    <div class="col-12">
+        <div class="col-md-12">
+            <div class="alert alert-info" v-if="feedback">
+                {{feedback}}
+            </div>
+        </div>
+
+        <div class="offset-4 col-5">
+            <div class="form-group">
+                <h4> Search...</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control" v-model="searchKey" placeholder="Search a video" />
+                    <button class="btn btn-info" v-on:click.prevent="fetchVideos">Search</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12" v-if="isHidden">
+            <h3> Is dit de video dat je zou willen zien?</h3>
+            <div class="row">
+                <ul class="col-4" v-for="video in videos">
+                    <li class="list-group-item">
+                        <img :src="video.snippet.thumbnails.high.url" class="card-img-top">
+                        <h5>Titel: {{video.snippet.title}}</h5>
+                        <button class="btn btn-info" v-on:click.prevent.alt="addToWaitingList(video)">Toevoegen</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <h3>Wachtrij voor video</h3>
+            <div class="row flex-column">
+                <ul class="col-12">
+                    <li class="list-group-item">
+                        <img :src=videoRequests.snippet.thumbnails.high.url class="rounded float-right" height="125" width="200">
+                        <div class="text-center">
+                            <h3>{{videoRequests.snippet.title}}</h3>
+                            <br />
+                            <label>{{videoRequests.snippet.description}}</label>
+                            <br />
+                            <label>{{waitListLink}}</label>
+                            <br />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/video/video.js"></script>
+

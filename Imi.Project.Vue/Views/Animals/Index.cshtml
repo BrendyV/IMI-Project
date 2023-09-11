@@ -1,0 +1,113 @@
+﻿<div id="app">
+    <h2>{{pageTitle}}</h2>
+    <div v-if="animalDeleted" class="alert alert-primary alert-dismissible fade show" role="alert">
+        Animal deleted
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    <div class="offset-4 col-5" v-if="isHidden">
+        <div class="form-group">
+            <label>Soorten</label>
+            <select ref="slcKinds" class="form-control">
+                <option v-bind:value="kind.id" v-for="kind in kinds">{{kind.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <Label> Nederlandse naam: </Label>
+            <input type="text" class="form-control" v-model="currentAnimal.nameDutch"/>
+        </div>
+        <div class="form-group">
+            <Label> Naam Familie: </Label>
+            <input type="text" class="form-control" v-model="currentAnimal.nameFamily"/>
+        </div>
+        <div class="form-group">
+            <label>Broedzorg: </label>
+            <select ref="slcBreedings" class="form-control">
+                <option v-bind:value="breeding.id" v-for="breeding in breedings">{{breeding.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label> Leefgebied: </label>
+            <select ref="slcContinent" class="form-control">
+                <option v-bind:value="continent.id" v-for="continent in continents">{{continent.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label> Soort voeding: </label>
+            <select ref="slcDiet" class="form-control">
+                <option v-bind:value="diet.id" v-for="diet in diets">{{diet.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label> Sociaal gedrag: </label>
+            <select ref="slcSocial" class="form-control">
+                <option v-bind:value="social.id" v-for="social in socials">{{social.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label> Minimum temperatuur : </label>
+            <input type="number" class="form-control" v-model="currentAnimal.tempMin"/>
+        </div>
+        <div class="form-group">
+            <label> Maximum temperatuur : </label>
+            <input type="number" class="form-control" v-model="currentAnimal.tempMax"/>
+        </div>
+        <div class="form-group">
+            <label> Minimum ph-waarde : </label>
+            <input type="number" class="form-control" v-model="currentAnimal.phMin"/>
+        </div>
+        <div class="form-group">
+            <label> Maximum ph-waarde : </label>
+            <input type="number" class="form-control" v-model="currentAnimal.phMax"/>
+        </div>
+        <div class="form-group">
+            <label> Minimum gh-waarde : </label>
+            <input type="number" class="form-control" v-model="currentAnimal.ghMin"/>
+        </div>
+        <div class="form-group">
+            <label> Maximum gh-waarde : </label>
+            <input type="number" class="form-control" v-model="currentAnimal.ghMax"/>
+        </div>
+
+        <div class="form-group">
+            <label>Image</label>
+            <input ref="image" type="file" class="form-control">
+        </div>
+
+        <div class="btn btn-group col-5 offset-4 text-center">
+            <button class="btn btn-primary" v-on:click="isHidden = !isHidden"> Cancel </button>
+            <button class="btn btn-primary" v-on:click.prevent="toSaveAnimal"> Save </button>
+        </div>
+
+    </div>
+
+
+    @* Kaartjes van de dieren *@
+    <div class="list-of-animals">
+        <div class="form-group">
+            <label>Soorten</label>
+            <select ref="slcKinds" v-on:change="getAnimals" class="form-control">
+                <option v-bind:value="kind.id" v-for="kind in kinds">{{kind.name}}</option>
+            </select>
+        </div>
+        <a class="nav-link text-success" asp-area="" asp-controller="Animals" asp-action="CreateAnimal"> Nieuw dier </a>
+        <div class="row">
+            <div v-for="animal in animals" class="card col-md-3 m-2 p-4" style="width: 18rem;">
+                <img v-bind:src="animal.image" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{animal.nameDutch}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{animal.nameFamily}}</h6>
+                    <button v-on:click="deleteAnimal" v-bind:id="animal.id" class="btn btn-primary">Delete</button>
+                    <button v-on:click="getAnimalsDetails(animal)" id="animal.id" class="btn btn-primary">Wijzigen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/js/animals/animals.js"></script>

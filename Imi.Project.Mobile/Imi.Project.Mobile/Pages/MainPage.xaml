@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:viewmodels="clr-namespace:Imi.Project.Mobile.ViewModels" x:DataType="viewmodels:MainViewModel"
+             x:Class="Imi.Project.Mobile.Pages.MainPage"
+             BackgroundImageSource="backgroundMain.png">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Setting" Priority="1" Order="Primary"
+                     IconImageSource="setting.png"
+                     Command="{Binding DevicePageCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="40" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <Label Text="AnimalKingdom"
+                   FontSize="75"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Center">
+                <Label.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="Android">JackSimba-PersonalUse.otf#Jack Simba - Personal Use</On>
+                        <On Platform="UWP">/Assets/Fonts/JackSimba-PersonalUse.otf#Jack Simba - Personal Use</On>
+                    </OnPlatform>
+                </Label.FontFamily>
+            </Label>
+            <StackLayout Spacing="5" VerticalOptions="Center">
+                <Image Source="bettablauw.png" Aspect="AspectFit" HeightRequest="250" WidthRequest="250"/>
+                <buttons:SfButton
+                VerticalOptions="Center"
+                Text="Login"
+                TextColor="Black"
+                BackgroundColor="#E0F7FC"
+                BorderWidth="1.5"
+                CornerRadius="50"
+                Command="{Binding LoginPageCommand}"/>
+                <!--<buttons:SfButton
+                VerticalOptions="Center"
+                Text="Animals"
+                TextColor="Black"
+                BackgroundColor="#E0F7FC"
+                BorderWidth="1.5"
+                CornerRadius="50"
+                Command="{Binding AnimalCommand}"/>--> 
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

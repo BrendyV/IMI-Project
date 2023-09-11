@@ -1,0 +1,55 @@
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+a, .btn-link {
+    color: #0366d6;
+}
+
+.btn-warning {
+    border-color: black;
+    margin: 10px;
+}
+
+navbar navbar-dark bg-dark {
+    background-color: black;
+    height: 50px;
+    width: 500px;
+}
+
+h1, h3 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+}
+
+section {
+    border: black solid 3px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    width: 500px;
+    background-color: dodgerblue;
+}
+.image-home {
+    border-radius: 15px;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    display: block;
+    margin-left: 25%;
+    margin-top: 8%;
+}
+
+.card-img{
+    width: 50%;
+    height: 50%;
+    display: block;
+    margin-left: 25%;
+    text-align: center;
+}
+
+.form-check {
+    text-align: center;
+}

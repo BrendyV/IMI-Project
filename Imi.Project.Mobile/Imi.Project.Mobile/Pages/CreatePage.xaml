@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Imi.Project.Mobile.ViewModels" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:DataType="viewmodels:CreateViewModel"
+             x:Class="Imi.Project.Mobile.Pages.CreatePage"
+             BackgroundImageSource="backgroundBlauw.png" Opacity="1"
+             Title="Maak een nieuw dier aan...">
+    <ContentPage.ToolbarItems>
+        <!-- <ToolbarItem Text="Save" Command="{Binding SaveAnimalCommand}"/> -->
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout>
+                    <buttons:SfButton ImageSource="gallery.png" ShowIcon="True" BackgroundColor="Blue" WidthRequest="25" Clicked="Button_Clicked"/>
+                    <buttons:SfButton ImageSource="addphoto.png" ShowIcon="True" BackgroundColor="Blue" Clicked="Button1_Clicked"/>
+                    <Image x:Name="resultImage"/>
+                    <Label Text="Soort dier" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Picker FontSize="Medium">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Vis</x:String>
+                                <x:String>Garnaal</x:String>
+                                <x:String>Kreeft</x:String>
+                                <x:String>Slak</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Label Text="Nederlandse naam" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Entry Text="{Binding NameDutch}" Keyboard="Text"/>
+                    <Label Text="Naam van de familie" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Entry Text="{Binding NameFamily}" Keyboard="Text"/>
+                    <Label Text="Leefgebied" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Picker FontSize="Medium">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Azië</x:String>
+                                <x:String>Afrika</x:String>
+                                <x:String>Noord-Amerika</x:String>
+                                <x:String>Midden-Amerika</x:String>
+                                <x:String>Zuid-Amerika</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Label Text="Voeding" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Picker FontSize="Medium">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Omnivoor</x:String>
+                                <x:String>Carnivoor</x:String>
+                                <x:String>Herbivoor</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Label Text="Sociaalgedrag" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Picker FontSize="Medium">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Solitair</x:String>
+                                <x:String>Groep</x:String>
+                                <x:String>Harrem</x:String>
+                                <x:String>School</x:String>
+                                <x:String>Koppel</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Label Text="Broedzorg" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Picker FontSize="Medium">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Schuimnestbouwer</x:String>
+                                <x:String>Holenbroeder</x:String>
+                                <x:String>Vrijlegger</x:String>
+                                <x:String>Muilbroeder</x:String>
+                                <x:String>Bijhouden</x:String>
+                                <x:String>Eierlevendbarend</x:String>
+                                <x:String>Substraatbroeder</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Label Text="Minimum temperatuur" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Entry Text="{Binding TempMin}" Keyboard="Numeric" />
+                    <Label Text="Maximum temperatuur" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Entry Text="{Binding TempMax}" Keyboard="Numeric"/>
+                    <Label Text="Minimum ph in het water" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Entry Text="{Binding PhMin}" Keyboard="Numeric"/>
+                    <Label Text="Maximum ph in het water" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Entry Text="{Binding PhMax}" Keyboard="Numeric"/>
+                    <Label Text="Minimum Gh in het water" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Entry Text="{Binding GhMin}" Keyboard="Numeric"/>
+                    <Label Text="Maximum Gh in het water" FontSize="Small" TextColor="black" HorizontalOptions="Center"/>
+                    <Entry Text="{Binding GhMax}" Keyboard="Numeric"/>
+                </StackLayout>
+            </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

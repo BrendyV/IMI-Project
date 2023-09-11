@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Imi.Project.Mobile.ViewModels" x:DataType="viewmodels:DeviceViewModel"
+             x:Class="Imi.Project.Mobile.Pages.DevicePage"
+             BackgroundImageSource="backgroundMain.png" Opacity="1">
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView>
+                <TableSection Title="Device information">
+                    <TextCell Detail="Manufacturer" Text="{Binding Info.Manufacturer}"  />
+                    <TextCell Detail="Model" Text="{Binding Info.Model}"  />
+                    <TextCell Detail="Version" Text="{Binding Info.ReleaseVersion}"  />
+                    <TextCell Detail="Can Vibrate?" Text="{Binding Info.CanVibrate}"  />
+                </TableSection>
+            </TableView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

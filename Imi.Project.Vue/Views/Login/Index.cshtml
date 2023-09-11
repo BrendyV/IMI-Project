@@ -1,0 +1,135 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<div id="app">
+
+    <div class="text-center" v-if="!isHidden">
+        <h1 class="display-4">Login</h1>
+        <br />
+    </div>
+    <div class="text-center" v-if="isHidden">
+        <h1 class="display-4">Registreren</h1>
+        <br />
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info" v-if="feedback">
+                {{feedback}}
+            </div>
+        </div>
+
+        <div class="offset-3 col-6" v-if="!isHidden">
+            <div class="form-group">
+                <input class="form-control" v-model="dataLogin.email" placeholder="Email" />
+            </div>
+            <div class="form-group">
+                <input class="form-control" v-model="dataLogin.password" placeholder="Wachtwoord" />
+            </div>
+
+            <div class="btn-group col-5 offset-4">
+                <button class="btn btn-info" v-on:click="isHidden = !isHidden"> New User? </button>
+                <button class="btn btn-info" v-on:click.prevent="toLogin">Login</button>
+            </div>
+        </div>
+
+        <div class="offset-3 col-6" v-if="isHidden">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" v-model="dataRegister.username" />
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" v-model="dataRegister.email" />
+            </div>
+            <div class="form-group">
+                <label>Wachtwoord</label>
+                <input type="password" class="form-control" v-model="dataRegister.password" />
+            </div>
+            <div class="form-group">
+                <label>Bevestig wachtwoord</label>
+                <input type="password" class="form-control" v-model="dataRegister.confirmPassword" />
+            </div>
+            <div class="form-group">
+                <label>Geboortedatum</label>
+                <input type="date" class="form-control" v-model="dataRegister.birthday" />
+            </div>
+            <div>
+                <label>Akkoord met de algemene voorwaarden</label>
+                <input type="checkbox" value="termsAndConditions" v-model="checked" value=true/>
+            </div>
+
+            <div class="btn-group col-5 offset-4">
+                <button class="btn btn-info" v-on:click="isHidden = !isHidden"> Naar login </button>
+                <button class="btn btn-info" v-on:click.prevent="toRegister"> Registreer </button>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+@section scripts{
+    <script src="~/lib/vue/vue.js"></script>
+    <script src="~/lib/axios/axios.min.js"></script>
+
+    <script>
+        var apiLogin = 'https://localhost:5001/api/auths/login';
+        var apiRegister = 'https://localhost:5001/api/auths/register';
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isHidden: false,
+                feedback: '',
+                checked: '',
+                dataLogin:
+                {
+                    email: 'admin@imi.be',
+                    password: 'Test123?'
+                },
+                dataRegister:
+                {
+                    username: 'steve@imi.be',
+                    email: 'steve@imi.be',
+                    password: 'Test123?',
+                    confirmPassword: 'Test123?',
+                    birthday: '1985-08-02',
+                    termsAndConditions: true,
+                },
+            },
+            methods: {
+                toLogin: function() {
+                    var self = this;
+                    axios
+                        .post(apiLogin, this.dataLogin)
+                        .catch(error => this.errorMessage = "Email or password is invalid")
+                        .then(response => localStorage.setItem('token', response.data.token))
+                        .then(function() {
+                            console.log(localStorage.getItem('token'));
+                            self.feedback = 'U bent ingelogd';
+                            setTimeout(function() { self.feedback = null; }, 5000);
+                            self.dataLogin.email = '';
+                            self.dataLogin.password = '';
+                        });
+                },
+                toRegister: function() {
+                    var self = this;
+                    console.log(this.dataRegister)
+                    axios
+                        .post(apiRegister, this.dataRegister)
+                        .catch(error => this.errorMessage = "Check input data")
+                        .then(function() {
+                            self.feedback = `U bent geregistreerd, Juist nog inloggen en klaar`;
+                            setTimeout(function() { self.feedback = null; }, 5000);
+
+                        });
+                    }
+            }
+        })
+    </script>
+}

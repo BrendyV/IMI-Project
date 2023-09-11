@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+              xmlns:viewmodels="clr-namespace:Imi.Project.Mobile.ViewModels" 
+              xmlns:dtos="clr-namespace:Imi.Project.Mobile.Domain.Dtos"
+              x:DataType="viewmodels:InfoViewModel" 
+              x:Class="Imi.Project.Mobile.Pages.InfoPage" 
+              BackgroundImageSource="backgroundBlauw.png" Opacity="1" 
+              Title="Meer info">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Priority="1" Order="Primary"
+                      Command="{ Binding OpenEditPageCommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout BackgroundColor="White">
+            <Entry Text=""
+                         Placeholder="Share...."
+                         x:Name="EntryShare"
+                         VerticalOptions="Start"
+                         HorizontalOptions="Center" />
+            <Button x:Name="ButtonShare"
+                          Clicked="ButtonShare_Clicked"
+                          VerticalOptions="Center"
+                          TextColor="Black"
+                          BackgroundColor="Transparent"
+                          Text="Delen" />
+            <Image Source="{Binding Image}"
+               HeightRequest="300"
+               WidthRequest="300"
+               Aspect="AspectFill"/>
+            <Label Text="{Binding NameDutch}" FontSize="22" FontAttributes="Bold" TextColor="Blue"/>
+            <Label Text="{Binding NameFamily}" FontSize="21" FontAttributes="Bold" TextColor="Blue"/>
+            <StackLayout>
+                <Label Text="Waarden van het water: " FontSize="18" FontAttributes="Italic" TextColor="Blue"></Label>
+                <Label Text="Minimum temperatuur: " FontSize="16" FontAttributes="None" TextColor="Blue"></Label>
+                <Label Text="{Binding TempMin}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Blue"/>
+                <Label Text="Maximum temperatuur: " FontSize="16" FontAttributes="None" TextColor="Blue"></Label>
+                <Label Text="{Binding TempMax}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Blue"/>
+                <Label Text="Minimum Gh-waarde: " FontSize="16" FontAttributes="None" TextColor="Blue"></Label>
+                <Label Text="{Binding GhMin}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Blue"/>
+                <Label Text="Minimum Gh-waarde: " FontSize="16" FontAttributes="None" TextColor="Blue"></Label>
+                <Label Text="{Binding GhMax}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Blue"/>
+                <Label Text="Minimum Ph-waarde: " FontSize="16" FontAttributes="None" TextColor="Blue"></Label>
+                <Label Text="{Binding PhMin}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Blue"/>
+                <Label Text="Minimum Ph-waarde: " FontSize="16" FontAttributes="None" TextColor="Blue"></Label>
+                <Label Text="{Binding PhMax}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Blue"/>
+            </StackLayout>
+            
+            <Label TextColor="black" TextDecorations="Underline" FontAttributes="Bold"
+                        FontSize="20">
+                Extra informatie
+            </Label>
+            <Label TextColor="Black" FontSize="20" FontAttributes="Italic, Bold"
+                        HorizontalOptions="CenterAndExpand" TextDecorations="Underline">
+                Leefgebied
+            </Label>
+            <Label Text="{Binding Continent}" FontSize="18" TextColor="black"
+                        HorizontalOptions="Center" />
+            <Label TextColor="Black" FontSize="20" FontAttributes="Italic, Bold"
+                        HorizontalOptions="CenterAndExpand" TextDecorations="Underline">
+                Dieet
+            </Label>
+            <Label Text="{Binding Diet}" FontSize="18" TextColor="black" HorizontalOptions="Center" />
+            <Label TextColor="Black" FontSize="20" FontAttributes="Italic,Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        TextDecorations="Underline">
+                Sociaal gedrag
+            </Label>
+            <Label Text="{Binding Social}" FontSize="18" TextColor="black"
+                        HorizontalOptions="Center" />
+            <Label TextColor="Black" FontSize="20" FontAttributes="Italic,Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        TextDecorations="Underline">
+                Broedzorg
+            </Label>
+            <Label Text="{Binding Breeding}" FontSize="18" TextColor="black"
+                        HorizontalOptions="Center" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

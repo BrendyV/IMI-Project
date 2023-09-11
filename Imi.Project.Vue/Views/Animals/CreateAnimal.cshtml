@@ -1,0 +1,98 @@
+﻿<div id="app">
+    <h2>{{pageTitle}}</h2>
+    <div v-if="error" class="alert alert-danger" role="alert">
+        {{userMessage}}
+    </div>
+    <div v-if="success" class="alert alert-success" role="alert">
+        {{userMessage}}
+    </div>
+
+    <form v-on:submit.prevent="addAnimal" enctype="multipart/form-data" class="col col-lg-5 mx-auto">
+        <div class="form-group">
+            <label>Soort</label>
+            <select v-model="animalModel.kindId" class="form-control">
+                <option v-for="kind in kinds" v-bind:value="kind.id">
+                    {{kind.name}}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Nederlandse naam</label>
+            <input v-model="animalModel.nameDutch" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Familie naam</label>
+            <input v-model="animalModel.nameFamily" class="form-control">
+        </div>
+        @* Leefgebied *@
+        <div class="form-group">
+            <label>Leefgebied</label>
+            <select v-model="animalModel.continentId" class="form-control">
+                <option v-for="continent in continents" v-bind:value="continent.id">
+                    {{continent.name}}
+                </option>
+            </select>
+        </div>
+        @* Broedzorg *@
+        <div class="form-group">
+            <label>Broedzorg</label>
+            <select v-model="animalModel.breedingId" class="form-control">
+                <option v-bind:value="breeding.id" v-for="breeding in breedings">
+                    {{breeding.name}}
+                </option>
+            </select>
+        </div>
+        @* VOeding *@
+        <div class="form-group">
+            <label>Voeding</label>
+            <select v-model="animalModel.dietId" class="form-control">
+                <option v-for="diet in diets" v-bind:value="diet.id">
+                    {{diet.name}}
+                </option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Sociaal gedrag</label>
+            <select v-model="animalModel.socialId" class="form-control">
+                <option v-for="social in socials" v-bind:value="social.id">
+                    {{social.name}}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Minimum temperatuur</label>
+            <input v-model="animalModel.tempMin" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Maximum temperatuur</label>
+            <input v-model="animalModel.tempMax" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Minimum ph-waarde</label>
+            <input v-model="animalModel.phMin" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Maximum ph-waarde</label>
+            <input v-model="animalModel.phMax" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Minimum gh-waarde</label>
+            <input v-model="animalModel.ghMin" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Maximum gh-waarde</label>
+            <input v-model="animalModel.ghMax" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Image</label>
+            <input ref="image" type="file" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+</div>
+<script src="~/js/animals/addAnimal.js"></script>

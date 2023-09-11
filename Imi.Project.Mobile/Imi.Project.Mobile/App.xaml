@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Imi.Project.Mobile.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Reusable OnPlatforms -->
+            <OnPlatform x:Key="PlatformContentPagePadding" x:TypeArguments="Thickness">
+                <On Platform="Android">5, 0, 5, 0</On>
+                <On Platform="Windows">5, 0, 5, 0</On>
+            </OnPlatform>
+
+            <!-- Gekozen kleuren -->
+            <Color x:Key="PageBackgroundColor">#A4D3FC</Color>
+            <Color x:Key="TitleTextColor">#0000ff</Color>
+            <Color x:Key="NormalTextColor">#ffffff</Color>
+            <Color x:Key="SliderMinimumColor">#9590f8</Color>
+            <Color x:Key="FlyoutColor">#000080</Color>
+
+            <!-- De stijl voor elke pagina -->
+            <Style x:Key="BasePageStyle" TargetType="Page">
+                <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColor}" />
+            </Style>
+            <Style x:Key="HomePageStyle" TargetType="ContentPage" BasedOn="{StaticResource BasePageStyle}" />
+            <Style x:Key="AnimalbbedPageStyle" TargetType="ContentPage" BasedOn="{StaticResource BasePageStyle}" />
+            <Style x:Key="LoginPageStyle" TargetType="ContentPage" BasedOn="{StaticResource BasePageStyle}" />
+            <Style x:Key="LogoutPageStyle" TargetType="ContentPage" BasedOn="{StaticResource BasePageStyle}" />
+
+            <!-- ContentPage Style -->
+            <Style x:Key="PlatformPaddedContentPageStyle" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColor}" />
+                <Setter Property="Padding" Value="{StaticResource PlatformContentPagePadding}" />
+            </Style>
+
+            <!-- Title (inherits from built-in TitleStyle -->
+            <Style x:Key="CustomTitleStyle" TargetType="Label" BaseResourceKey="TitleStyle">
+                <Setter Property="TextColor" Value="{StaticResource TitleTextColor}" />
+            </Style>
+            <!-- Caption (inherits from built-in CaptionStyle -->
+            <Style x:Key="CustomCaptionStyle" TargetType="Label" BaseResourceKey="CaptionStyle">
+                <Setter Property="TextColor" Value="{StaticResource TitleTextColor}" />
+            </Style>
+            <!-- Implicit style (applies to ALL Labels) for Body (inherits from built-in BodyStyle) -->
+            <Style TargetType="Label" BaseResourceKey="BodyStyle">
+                <Setter Property="TextColor" Value="{StaticResource NormalTextColor}" />
+            </Style>
+
+            <!-- Default Buttons -->
+            <Color x:Key="DefaultButtonTextColor">#ffffff</Color>
+            <Color x:Key="DefaultButtonBackColor">#000000</Color>
+            <Style x:Key="DefaultButtonStyle" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="TextColor" Value="{StaticResource DefaultButtonTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DefaultButtonBackColor}" />
+                <Setter Property="Margin" Value="10,0,10,0" />
+            </Style>
+
+            <!-- Cancel Buttons -->
+            <Color x:Key="CancelButtonTextColor">#ffffff</Color>
+            <Color x:Key="CancelButtonBackColor">#000000</Color>
+            <Style x:Key="CancelButtonStyle" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="TextColor" Value="{StaticResource CancelButtonTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource CancelButtonBackColor}" />
+            </Style>
+
+            <!-- Master page Views -->
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

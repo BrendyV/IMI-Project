@@ -1,0 +1,18 @@
+﻿@using Imi.Project.Blazor.Models.Animal;
+
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Animals kingdom</a>
+    <ul class="navbar-nav">
+        @foreach (var item in MenuItems)
+        {
+            <li class="nav-item">
+                <NavLink class="nav-link" href="@item.Href" Match="NavLinkMatch.All">@item.Caption</NavLink>
+            </li>
+        }
+    </ul>
+</nav>
+
+@code {
+    [Parameter]
+    public MenuItem[] MenuItems { get; set; }
+}

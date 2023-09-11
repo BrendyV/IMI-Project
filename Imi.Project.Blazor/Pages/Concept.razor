@@ -1,0 +1,93 @@
+﻿@page "/concept"
+
+@using Imi.Project.Blazor.Services.Concept
+@inject IQuestionItemService QuestionItemService
+
+
+<h1>Neem de quiz!</h1>
+<p>Je huidige score is: @currentScore</p>
+
+@if (questionItems == null)
+{
+    <p><em>Loading...</em></p>
+
+    <button type="button" class="btn btn-primary" @onclick="TakeQuiz">Take your qiuz</button>
+}
+else
+{
+    int quizIndex = 0;
+    @foreach (var question in questionItems)
+    {
+        <section>
+            
+            <img class="card-img"  src="@question.ImagePath" />
+            <h3>@question.Question</h3>
+            <div class="form-check">
+                @{
+                    int choiceIndex = 0;
+                    quizScores.Add(0);
+                }
+                @foreach (var answer in question.Answers)
+                {
+                    int currentQuizIndex = quizIndex;
+                    <input class="form-check-input" type="radio" name="@quizIndex" value="@choiceIndex" @onchange="@((e) => UpdateScore(Convert.ToInt32(e.Value), currentQuizIndex))" />
+
+                    @answer
+
+                    <br>
+
+                    choiceIndex++;
+                }
+            </div>
+        </section>
+
+        quizIndex++;
+    }
+
+    if (!isTakeQuiz)
+    {
+        <button type="button" class="btn btn-primary" @onclick="SubmitAnswer">Toon je score</button>
+    }
+    else
+    {
+        <button type="button" class="btn btn-primary" @onclick="TakeQuiz">Take your qiuz</button>
+    }
+
+    
+}
+
+
+@code{
+    List<QuestionItem> questionItems;
+    List<int> quizScores = new List<int>();
+    int currentScore = 0;
+    bool isTakeQuiz;
+
+    private async Task TakeQuiz() 
+    {
+        questionItems = await QuestionItemService.GetAllAsync();
+
+        currentScore = 0;
+        isTakeQuiz = false;
+    }
+
+    private void SubmitAnswer()
+    {
+        questionItems = new List<QuestionItem>();
+        isTakeQuiz = true;
+        currentScore = quizScores.Sum();
+    }
+    private void UpdateScore(int chosenAnswerIndex, int quizIndex)
+    {
+        var quizItem = questionItems[quizIndex];
+
+        if (chosenAnswerIndex == quizItem.CorrectAnswerIndex)
+        {
+            quizScores[quizIndex] = quizItem.Score;
+        }
+        else
+        {
+            quizScores[quizIndex] = 0;
+        }
+    }
+}

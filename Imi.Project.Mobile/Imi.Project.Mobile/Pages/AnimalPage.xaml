@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Imi.Project.Mobile.ViewModels"
+             xmlns:extensions="clr-namespace:Howest.Prog.Xamarin.UriSourceExtensions;assembly=Howest.Prog.Xamarin.UriSourceExtensions"
+             xmlns:dtos="clr-namespace:Imi.Project.Mobile.Domain.Dtos;assembly=Imi.Project.Mobile"
+             x:DataType="viewmodels:AnimalViewModel"
+             x:Class="Imi.Project.Mobile.Pages.AnimalPage"
+             BackgroundImageSource="backgroundBlauw.png" Opacity="1">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Create" Priority="1" Order="Primary"
+                     IconImageSource="create.png"
+                     Command="{Binding OpenCreatePageCommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Animals}"
+                      HasUnevenRows="True"
+                      ItemTapped="ListView_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="dtos:AnimalDto">
+                        <ViewCell>
+                            <Frame Margin="10" HasShadow="True" CornerRadius="10" BorderColor="Black">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image
+                                    HeightRequest="150"
+                                    WidthRequest="150"
+                                    Aspect="AspectFill"
+                                    Source="{Binding Image}">
+                                        <Image.Behaviors>
+                                            <extensions:TlsSourceBehavior IgnoreCertificateErrors="True" />
+                                        </Image.Behaviors>
+                                    </Image>
+                                    <Label VerticalOptions="Center"
+                                           FontSize="14"
+                                           TextColor="Black"
+                                           Text="{Binding NameFamily}" />
+                                    <Label VerticalOptions="Center"
+                                           FontSize="12"
+                                           TextColor="Black"
+                                           Text="{Binding NameDutch}" />
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+
+<!--<StackLayout>
+        <ListView>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <cards:SfCardLayout x:Name="cardLayout" BackgroundColor="#f0f0f0"
+                                    SwipeDirection="Left" HeightRequest="300">
+                        <cards:SfCardView>
+                            <local:AnimalCardView/>
+                        </cards:SfCardView>
+                    </cards:SfCardLayout>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>-->

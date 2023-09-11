@@ -1,0 +1,133 @@
+﻿<EditForm Model="@Animal" OnValidSubmit="@(e => OnSaveClick.InvokeAsync(Animal))">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <div class="form-group">
+        <label for="type">Soort: </label>
+        <InputSelect id="type" @bind-Value="Animal.KindId" class="form-control">
+            @foreach (var type in Animal.Kinds)
+            {
+                <option value="@type.Value">@type.Label</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Animal.KindId)"/>
+    </div>
+
+    <div>
+        <img src="@Animal.Image" alt="@Animal.NameDutch"/>
+    </div>
+
+    <div class="form-group">
+        <label for="nameFamily"> Naam familie: </label>
+        <InputText id="title" @bind-Value="Animal.NameFamily" class="form-control"/>
+        <ValidationMessage For="@(() => Animal.NameFamily)"/>
+    </div>
+    <div class="form-group">
+        <label for="NameDutch">Naam Nederlands: </label>
+        <InputText id="title" @bind-Value="Animal.NameDutch" class="form-control"/>
+        <ValidationMessage For="@(() => Animal.NameDutch)"/>
+    </div>
+
+    <div class="form-group">
+        <label for="continent">Continent: </label>
+        <InputSelect id="continent" @bind-Value="Animal.ContinentId" class="form-control">
+            @foreach (var continent in Animal.Continents)
+            {
+                <option value="@continent.Value">@continent.Label</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Animal.ContinentId)"/>
+    </div>
+
+    <div class="form-group">
+        <label for="breeding">Broedzorg: </label>
+        <InputSelect id="breeding" @bind-Value="Animal.BreedingId" class="form-control">
+            @foreach (var breed in Animal.Breedings)
+            {
+                <option value="@breed.Value">@breed.Label</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Animal.BreedingId)"/>
+    </div>
+
+    <div class="form-group">
+        <label for="diet">Soort eters: </label>
+        <InputSelect id="diet" @bind-Value="Animal.DietId" class="form-control">
+            @foreach (var diet in Animal.Diets)
+            {
+                <option value="@diet.Value">@diet.Label</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Animal.DietId)"/>
+    </div>
+
+    <div class="form-group">
+        <label for="social">Sociaal: </label>
+        <InputSelect id="social" @bind-Value="Animal.SocialId" class="form-control">
+            @foreach (var social in Animal.Socials)
+            {
+                <option value="@social.Value">@social.Label</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Animal.SocialId)"/>
+    </div>
+
+    <div class="form-group">
+        <label for="minTemp">Minimum temperatuur: </label>
+        <InputNumber id="title" @bind-Value="Animal.minTemp" class="form-control"/>
+        <ValidationMessage For="@(() => Animal.minTemp)"/>
+    </div>
+
+    <div class="form-group">
+        <label for="maxTemp">Maximum temperatuur: </label>
+        <InputNumber id="title" @bind-Value="Animal.maxTemp" class="form-control"/>
+        <ValidationMessage For="@(() => Animal.maxTemp)"/>
+    </div>
+
+    <div class="form-group">
+        <label for="minPh">Minimum Ph-waarde: </label>
+        <InputNumber id="title" @bind-Value="Animal.minPh" class="form-control"/>
+        <ValidationMessage For="@(() => Animal.minPh)"/>
+    </div>
+
+    <div class="form-group">
+        <label for="maxPh">Maximum Ph-waarde: </label>
+        <InputNumber id="title" @bind-Value="Animal.maxPh" class="form-control"/>
+        <ValidationMessage For="@(() => Animal.maxPh)"/>
+    </div>
+
+    <div class="form-group">
+        <label for="minGh">Minimum Gh-waarde: </label>
+        <InputNumber id="title" @bind-Value="Animal.minGh" class="form-control"/>
+        <ValidationMessage For="@(() => Animal.minGh)"/>
+    </div>
+
+    <div class="form-group">
+        <label for="maxGh">Maximum Gh-waarde: </label>
+        <InputNumber id="title" @bind-Value="Animal.maxGh" class="form-control"/>
+        <ValidationMessage For="@(() => Animal.maxGh)"/>
+    </div>
+    <div class="form-group">
+        <label for="image">Afbeelding: </label>
+        <InputFile id="image" @bind-Value="Animal.Image" class="form-control"/>
+        <ValidationMessage For="@(() => Animal.Image)"/>
+    </div>
+
+    
+    <button type="submit" class="btn btn-warning">Save</button>
+    <button type="button" class="btn btn-warning" @onclick="OnCancelClick">Cancel</button>
+</EditForm>
+
+
+@code {
+
+    [Parameter]
+    public AnimalItem Animal { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancelClick { get; set; }
+
+    [Parameter]
+    public EventCallback<AnimalItem> OnSaveClick { get; set; }
+
+}

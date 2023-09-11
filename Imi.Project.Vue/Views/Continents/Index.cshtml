@@ -1,0 +1,23 @@
+﻿<div id="app">
+    <h2>{{pageTitle}}</h2>
+    <div v-if="continentDeleted" class="alert alert-primary alert-dismissible fade show" role="alert">
+        Continent deleted
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    <a class="nav-link text-success" asp-area="" asp-controller="Continents" asp-action="CreateContinent"> Nieuw dier </a>
+    <div class="row">
+        <div v-for="continent in continents" class="card col-md-3 m-2 p-4" style="width: 18rem;">
+            <img v-bind:src="continent.image" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h4 class="card-title">{{continent.name}}</h4>
+                 @* <a v-on:click="deletedContinent" v-bind:id="continent.id" class="btn btn-primary">Delete</a>  *@
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/continents/continents.js"></script>
