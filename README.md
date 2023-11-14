@@ -3,7 +3,7 @@
 
 ## Used programming languages
 ### Mobile Development
-    Xamarin Forms
+    Xamarin Forms -> For Android
 
 ### Programming Integration 
     Web Api
